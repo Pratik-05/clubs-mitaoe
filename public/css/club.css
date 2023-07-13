@@ -1,0 +1,360 @@
+
+
+/* head*/
+
+.head{
+    height: 200px;
+    background-color: aqua;
+    /* color: white; */
+    display: flex;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+.head h1{
+    /* color: white; */
+    animation: text-transform 1.5s ease 0.1s 1 alternate;
+}
+
+@keyframes text-transform {
+    0%{
+        transform: translateX(200px);
+    }
+    100%{
+        transform: translateX(0);
+    }  
+}
+
+/*main clubs/index*/
+
+.club-container{
+    border: 2px solid black;
+    border-radius: 10px;
+    display:flex;
+    flex-wrap: wrap;
+    margin: 5px;
+    padding: 35px 30px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    min-height: 400px;
+}
+.no-club{
+    margin: auto;
+    color: red;
+    font-size: 3.3rem;
+}
+/* club cards*/
+
+
+.club-card{
+    min-width: 280px;
+    max-width: 280px;
+    display: flex;
+    cursor: pointer;
+    background-color: white;
+    position: relative;
+    margin: 20px 20px;
+    border: 0px solid black;
+    /* border-radius: 15px; */
+    box-shadow: 3px 3px 14px rgb(5, 47, 49);
+    flex-direction: column;
+    /* background-color: yellow; */
+    height: fit-content;
+    z-index: 5;
+}
+.club-card:hover{
+    transform:translateY(-8px);
+}
+.club-photo{
+    height:150px;
+    /* border-radius: 15px 15px 0 0; */
+}
+.club-name{
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 15px 0;
+}
+.club-desc{
+    font-style: italic;
+    text-align: justify;
+    padding: 13px 35px;
+    overflow: auto;
+}
+.info{
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 15px;
+    margin: 2px 5px;
+    position: relative;
+}
+.member,.tag{
+    background-color: rgb(157, 157, 244);
+    padding: 1px 16px;
+    margin-top: 12px;
+    font-weight: bold;
+    color: white;
+    border-radius: 40px;
+    border: 3px solid blue;
+    cursor: pointer;
+}
+.tag{
+    background-color: red;
+    color: white;
+    position: absolute;
+    right: -20px;
+    border: 2px solid white;
+    border-radius: 15px;
+    top: 0px;
+    transform: rotate(30deg);
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.club-card a{
+    margin:23px auto;
+}
+
+
+/*Admin CSS*/
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+ 
+.club-admin-container{
+    margin: 17px 15px;
+    border: 2px solid black;
+    border-radius: 15px;
+    min-height: 400px;
+    padding: 20px 30px;
+}
+.club-admin-container h1{
+    text-align: center;
+    color: red;
+    margin: 20px;
+}
+.admin-head{
+    display: flex;
+    margin: 12px auto;
+    font-size: 2rem;
+    justify-content: space-evenly;
+    color:red;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* form css */
+.form-box{
+    width: 500px;
+    margin: 0px auto;
+    background-color: white;
+    border-radius: 0 60px 0 60px;
+    padding: 5px 30px;
+}
+.form-heading{
+    text-align: center;
+    margin: 30px 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.input-box{
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.1rem;
+}
+.input-box label{
+    padding: 5px 2px;
+}
+.input-box input,.input-box select{
+    padding: 5px 7px;
+    width: 100%;
+    margin: 5px 0;
+    outline: none;
+    font-size: 1.1rem;
+    border: none;
+    border-bottom: 2px solid black;
+}
+textarea{
+    padding: 5px 7px;
+}
+
+.container{
+    margin: 20px auto;
+    width: 90vw;
+}
+
+.not-edit{
+    background-color: #dddddd;
+}
+
+.avatar-main{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    display: block;
+    margin: 10px auto;
+    cursor: pointer;
+}
+.avatar{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    /* display: inline; */
+    margin: 10px;
+    cursor: pointer;
+}
+
+.avatar-box{
+    margin: 15px;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.1rem;
+    flex-wrap: wrap;
+}
+
+/* Club page css */
+
+.club-page-container{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    border: 2px solid black;
+    margin: 40px;
+    /* justify-content: center; */
+    align-items: center;
+    position: relative;
+}
+.operations{
+    /* background-color: antiquewhite; */
+    position: absolute;
+    right: 40px;
+    padding-bottom: 40px;
+    top: 9px;
+
+}
+.admin-op{
+    display: flex;
+    
+}
+.page-head{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 2.3rem;
+    font-family:fantasy;
+}
+.club-about{
+    padding: 30px;
+    font-size: 1.2rem;
+}
+
+.co-info{
+    display: flex;
+    justify-content: center;
+    padding: 0 40px;
+    flex-wrap: wrap;
+}
+.team-name{
+    font-style: italic;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.pro-card{
+    height: fit-content;
+    padding: 6px 20px;
+    cursor: pointer;
+    margin: 30px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+}
+.pro-card > *{
+    margin: 7px 0;
+}
+.pro-card > img{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+}
+
+.members{
+    position: absolute;
+    left: 20px;
+    
+}
+.mem-con{
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    /* align-items: center; */
+    overflow: scroll;
+}
+.members > h3{
+    padding-bottom: 10px;
+    font-size: 1.5rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: crimson;
+}
+.mem{
+    padding: 6px 12px;
+    font-size: 1.2rem;
+    border: 1px solid black;
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+}
+.pro-pic{
+    height: 110%;;
+    border-radius: 50%;
+    padding: 2px 5px;
+}
+
+.social{
+    /* position: ; */
+    top: 15px;
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa {
+    padding: 40px 6px;
+    font-size: 50px;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+
+  .events{
+      position:absolute;
+      right: 0px;
+      width: 230px;
+      top: 100px;
+      background-color: white;
+      padding: 0px;
+  }
+  .events h2{
+      padding: 10px;
+      margin: 0;
+      background-color: #dddddd;
+  }
+  .events > .event-list{
+      height: 200px;
+      z-index: 99;
+      background-color: rgb(237, 186, 186);
+  }
+  .btn-back1{
+    padding: 0 0px !important;
+    position: absolute;
+    right: 230px;
+    font-size: 1.4rem;
+    background-color: coral;
+}

@@ -1,0 +1,29 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title MITAOE | Club Page
+        style 
+            include ./../../public/css/landing.css
+            include ./../../public/util.css
+    body 
+        header.header 
+            img(src="Logo.png", alt="Logo" class="logo")
+        main 
+            .container
+                .welcome Welcome to MITAOE Club Page
+                .home
+                    br
+                    h2 The Platform For Students 
+                    .quote
+                        h4 "Be knowledgeable! 
+                        h4 Join interesting Clubs"
+                    .btn-box
+                        a.btn.btn-signup(href='/signup') Sign Up
+                        a.btn.btn-login(href='/login') Login
+                
+
+        include ../_footer.pug
+        script(async='' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5250790497940859' crossorigin='anonymous')

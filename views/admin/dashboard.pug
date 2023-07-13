@@ -1,0 +1,116 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title MITAOE | Club Page
+        style 
+            include ./../../public/css/club.css
+            include ./../../public/util.css
+            include ./../../public/css/header.css
+    body 
+        header.header 
+            img(src="../Logo.png", alt="Logo" class="logo")
+            nav 
+                ul 
+                    li 
+                        a(href="/clubs") Home 
+                    li
+                        a(href="/clubs/my") My Clubs 
+                    if user.role == "Teacher" 
+                        li
+                            a(href="/admin/new") Create Club 
+            div.msg=`Welcome ${user.full_name}`
+            .dropdown 
+                if user.profil_pic == ""
+                    img(src=`../assets/avatar/default.png`, alt="Profile Avatar" class="account")
+                else
+                    img(src=`../assets/avatar/${user.profil_pic || "default.png"}`, alt="Profile Avatar" class="account")
+                div.drop-btn                
+                div.dropdown-content 
+                    a.dropdown-item(href="/users/account") Account 
+                    a.dropdown-item(href="/users/account/setting") Setting 
+                    a.dropdown-item(href="/logout") Logout 
+                    if user.role == "Teacher"
+                        a.dropdown-item(href="/admin") Administration
+        if delUser == true 
+            div.err-msg#dismiss= `User Cannot be Deleted! User is a Coordinator of a Club`
+                button(onclick=`document.getElementById('dismiss').style.display = 'none'`) ❌                  
+        section.head
+            h1 Administrator Dashboard
+        main 
+            .club-admin-container 
+                div.admin-head
+                    div.head-item=`Students Count: ${sCount}`
+                    div.head-item=`Faculties Count: ${fCount}`
+                    div.head-item=`Club Count: ${clubCount}`
+                h1 Users
+                div.user-table 
+                    table 
+                        tr
+                            th Sr. No.
+                            th User Name 
+                            th User Email 
+                            th PRN
+                            th Study Year 
+                            th Department
+                            th User Role
+                            th Contact
+                            th Created On
+                            th Edit 
+                            th Delete
+                        each User,i in users
+                            tr 
+                                td
+                                    if User.email == user.email
+                                        div= `${i+1} `
+                                            div.btn.btn-you You
+                                    else    
+                                        = `${i+1}`
+                                td
+                                    a(href=`users/${User.prn}` target="_blank")= User.full_name  
+                                td= User.email 
+                                td= User.prn
+                                td= User.study_year 
+                                td= User.department
+                                td= User.role
+                                td= User.mobile_number
+                                td= User.createdAt.toLocaleString("en-IN")
+                                td  
+                                    form(action=`admin/${User._id}` method="POST")
+                                            if User.role == "Student"
+                                                button(type="submit" class="btn btn-make-admin") Make Admin
+                                            else 
+                                                button(type="submit" class="btn btn-make-member")  Make Member  
+                                td 
+                                    form(action=`admin/${User._id}?_method=DELETE` method="POST")
+                                        button(type="submit" style="width:fit-content; padding:7px" class="btn btn-delete-user") Delete
+                h1 Clubs
+                div.club-table 
+                    table 
+                        tr
+                            th Sr. No.
+                            th Club Name
+                            th Student Coordinator 
+                            th Faculty Coordinator 
+                            th Created At
+                            th Edit Coordinator
+                            th Delete
+                        each Club,i in clubs
+                            tr 
+                                td= i+1
+                                td= Club.club_name
+                                td= admins[i]
+                                td= faculties[i]
+                                td= Club.createdAt.toLocaleString("en-IN")
+                                td
+                                    a(href=`/admin/club/${Club._id}`)
+                                        button.btn.btn-make-admin Change
+                                td 
+                                    form(action=`admin/club/${Club._id}?_method=DELETE` method="POST")
+                                        button(type="submit" class="btn btn-delete-user") Delete Club
+
+                
+
+        include ../_footer.pug

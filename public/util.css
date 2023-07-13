@@ -1,0 +1,81 @@
+.btn{
+    border: none;
+    padding: 10px 20px;
+    box-shadow: 1px 0px 6px black;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+    margin: 3px;
+}
+.btn:hover{
+    opacity: 0.7;
+}
+.full-heigth{
+    height: 100%;
+}
+.btn-login{
+    background-color: blue;
+    color: white;
+}
+.btn-signup{
+    background-color: red;
+    color: white;
+}
+.btn-delete{
+    background-color: red;
+    color: white;
+}
+.btn-join{
+    background-color: rgb(28, 28, 255);
+    font-size: 1.04rem;
+    padding: 5px 30px;
+    font-weight: bold;
+    color: white;
+    border-radius: 60px;
+    border: 1px solid white;
+    width: fit-content;
+    margin: 0 auto;
+}
+.btn-make-admin{
+    background-color: rgb(42, 252, 77);
+    width: 110px;
+    padding: 6px 2px;
+}
+.btn-make-member{
+    background-color: rgb(241, 164, 62);
+    color: white;
+    width: 110px;
+    padding: 6px 2px;
+}
+.btn-delete-user{
+    background-color: red;
+    color: white;
+    width: 110px;
+    padding: 6px 2px;
+}
+
+.btn-you{
+    padding: 2px 2px;
+    width: fit-content;
+    color: white;
+    font-weight: bold;
+    background-color: blue;
+}
+.btn-back{
+    background-color: aquamarine;
+    color: black;
+}
+
+.btn-like{
+    background-color: blue;
+    color: white;
+    padding: 2px 8px;
+    font-size: 1.9rem;
+}
+.btn-unlike{
+    background-color: rgb(255, 0, 0);
+    color: white;
+    
+    padding: 2px 8px;
+    font-size: 1.9rem;
+}

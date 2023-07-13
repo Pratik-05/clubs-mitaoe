@@ -1,0 +1,19 @@
+*{
+  margin: 0;
+  padding: 0;box-sizing: border-box;
+
+
+}
+#error-page{
+  background-color: rgb(220, 255, 167);
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  background-color: greenyellow;
+}

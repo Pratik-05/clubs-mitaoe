@@ -1,0 +1,24 @@
+header.header 
+            img(src="../Logo.png", alt="Logo" class="logo")
+            nav 
+                ul 
+                    li 
+                        a(href="/clubs") Home 
+                    li
+                        a(href="/clubs/my") My Clubs 
+                    if user.role == "Teacher" 
+                        li
+                            a(href="/admin/new") Create Club 
+            div.msg=`Welcome ${user.full_name}`
+            .dropdown 
+                if user.profile_pic == ""
+                    img(src=`../assets/avatar/default.png`, alt="Profile Avatar" class="account")
+                else
+                    img(src=`../assets/avatar/${user.profile_pic || "default.png"}`, alt="Profile Avatar" class="account")
+                div.drop-btn                
+                div.dropdown-content 
+                    a.dropdown-item(href="/users/account") Account 
+                    a.dropdown-item(href="/users/account/setting") Setting 
+                    a.dropdown-item(href="/logout") Logout 
+                    if user.role == "Teacher"
+                        a.dropdown-item(href="/admin") Administration                 

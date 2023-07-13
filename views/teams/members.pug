@@ -1,0 +1,77 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Teams | MITAOE | Club Page
+        style 
+            include ./../../public/css/club.css
+            include ./../../public/util.css
+            include ./../../public/css/header.css
+    body 
+        header.header 
+            img(src="./../../../Logo.png", alt="Logo" class="logo")
+            nav 
+                ul 
+                    li 
+                        a(href="/clubs") Home 
+                    li
+                        a(href="/clubs/my") My Clubs 
+                    if user.role == "Teacher" 
+                        li
+                            a(href="/admin/new") Create Club 
+            div.msg=`Welcome ${user.full_name}`
+            .dropdown 
+                if user.profil_pic == ""
+                    img(src=`./../../../../assets/avatar/default.png`, alt="Profile Avatar" class="account")
+                else
+                    img(src=`./../../../assets/avatar/${user.profil_pic || "default.png"}`, alt="Profile Avatar" class="account")
+                div.drop-btn 
+                div.dropdown-content 
+                    a.dropdown-item(href="/users/account") Account 
+                    a.dropdown-item(href="/users/account/setting") Setting 
+                    a.dropdown-item(href="/logout") Logout 
+                    if user.role == "Teacher" 
+                        a.dropdown-item(href="/admin") Administration 
+        section.head
+            h1= `Manage Team Members for ${team.team_name}`
+        button(class="btn btn-back")
+            a(href=`/clubs/teams/${club.slug}`) Back to Team Page
+        main 
+                .club-admin-container 
+                    if members.length == 0
+                        h1 No Members Found
+                    else
+                        table 
+                            tr
+                                th Sr. No.
+                                th Member Name
+                                th PRN
+                                th Mobile
+                                th Delete
+                            each member,i in members
+                                tr 
+                                    td= i+1
+                                    td= member.full_name
+                                    td= member.prn 
+                                    td= member.mobile_number
+                                    td 
+                                        form(action=`/clubs/teams/m/${club.slug}/${team._id}/${member._id}?_method=DELETE`, method="post")
+                                            button(type="submit" class="btn btn-delete") Delete 
+                    .form-box 
+                        h3.form-heading Add Member
+                        form(action=`/clubs/teams/m/${club.slug}/${team._id}` method="POST")
+                            div.input-box
+                                label(for="members") 
+                                select(name="member" )
+                                    option(value) ---Select Member----
+                                    each user in users
+                                        option(value=`${user._id}`)= `${user.full_name} (${user.email})`                               
+
+                            div.input-box
+                                button(type="submit" class="btn btn-signup") Add Member
+                
+                
+
+        include ../_footer.pug

@@ -1,0 +1,64 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Updating Student Coordinator | MITAOE Clubs
+        style 
+            include ./../../public/css/club.css
+            include ./../../public/util.css
+            include ./../../public/css/header.css
+    body 
+        header.header 
+            img(src="/Logo.png", alt="Logo" class="logo")
+            nav 
+                ul 
+                    li 
+                        a(href="/clubs") Home 
+                    li
+                        a(href="/clubs/my") My Clubs 
+                    if user.role == "Teacher" 
+                        li
+                            a(href="/admin/new") Create Club 
+            div.msg=`Welcome ${user.full_name}`
+            .dropdown 
+                if user.profil_pic == ""
+                    img(src=`/assets/avatar/default.png`, alt="Profile Avatar" class="account")
+                else
+                    img(src=`/assets/avatar/${user.profil_pic || "default.png"}`, alt="Profile Avatar" class="account")
+                div.drop-btn                
+                div.dropdown-content 
+                    a.dropdown-item(href="/users/account") Account 
+                    a.dropdown-item(href="/users/account/setting") Setting 
+                    a.dropdown-item(href="/logout") Logout 
+                    if user.role == "Teacher"
+                        a.dropdown-item(href="/admin") Administration                 
+        if done == true 
+            div.done-msg#dismiss= `Password Updated! `
+                button(onclick=`document.getElementById('dismiss').style.display = 'none'`) ❌
+        if success == false 
+            div.err-msg#dismiss= `Something went! ${message}`
+                button(onclick=`document.getElementById('dismiss').style.display = 'none'`) ❌
+        section.head
+            h1 Changing Student Coordinator 
+        main 
+            .container 
+                .form-box 
+                    .form-heading Change Club Coordinator
+                    form(action=`/admin/clubUpdate/${admin_id}` method="POST")
+                            div.input-box
+                                label(for="admin") 
+                                select(name="admin")
+                                    option(value) -------------Select Club Admin-------------  
+                                    each User in users
+                                        option(value=`${User._id}`)= `${User.full_name} (${User.email})`  
+                            
+                            
+                            div.input-box
+                                button(type="submit" class="btn btn-signup") Change Coordinator
+                            div.input-box 
+           
+                
+
+        include ../_footer.pug

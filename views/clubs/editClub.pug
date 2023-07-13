@@ -1,0 +1,96 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title MITAOE | Club Page
+        style 
+            include ./../../public/css/club.css
+            include ./../../public/util.css
+            include ./../../public/css/header.css
+    body 
+        header.header 
+            img(src="./../../Logo.png", alt="Logo" class="logo")
+            nav 
+                ul 
+                    li 
+                        a(href="/clubs") Home 
+                    li
+                        a(href="/clubs/my") My Clubs 
+                    if user.role == "Teacher" 
+                        li
+                            a(href="/admin/new") Create Club 
+            div.msg=`Welcome ${user.full_name}`
+            .dropdown 
+                if user.profil_pic == ""
+                    img(src=`./../../assets/avatar/default.png`, alt="Profile Avatar" class="account")
+                else
+                    img(src=`./../../assets/avatar/${user.profil_pic || "default.png"}`, alt="Profile Avatar" class="account")
+                div.drop-btn 
+                div.dropdown-content 
+                    a.dropdown-item(href="/users/account") Account 
+                    a.dropdown-item(href="/users/account/setting") Setting 
+                    a.dropdown-item(href="/logout") Logout 
+                    if user.role == "Teacher" 
+                        a.dropdown-item(href="/admin") Administration 
+        section.head
+            h1 Editing Club Page
+        main 
+            .club-admin-container 
+                
+                    .form-box 
+                        h3.form-heading Edit Club
+                        form(action=`/clubs/edit/${club.slug}` method="POST")
+                            div.input-box
+                                label(for="club_name") Name
+                                input(type="text" title="Club Name" name="club_name" value=`${club.club_name}` class="not-edit" placeholder="Enter Club Name" required readonly) 
+                            div.input-box
+                                label(for="about") About
+                                textarea(name="about", cols="30", rows="10" placeholder="About Club")= club.about 
+                            div.input-box
+                                label(for="location") Club Location
+                                input(type="text" title="Club Location" name="location" value=`${club.location}` placeholder="Enter Club Location" required) 
+                            div.input-box
+                                label(for="website") Website Link
+                                input(type="url" name="website" value=`${club.website?club.website:""}` placeholder="URL/Website Link" ) 
+                            div.input-box
+                                label(for="instagram_url") Instagram Page Link
+                                input(type="url" name="instagram_url" value=`${club.instagram_url?club.website:""}` placeholder="Instagram URL" ) 
+                            div.input-box
+                                label(for="facebook_url") Facebook Page Link
+                                input(type="url" name="facebook_url" value=`${club.facebook_url?club.website:""}` placeholder="Facebook URL" ) 
+                            div.input-box
+                                label(for="linkedin_url") LinkedIn Page Link
+                                input(type="url" name="linkedin_url" value=`${club.linkedin_url?club.website:""}` placeholder="LinkedIn URL" ) 
+                            div.input-box
+                                label(for="tag") Club Type
+                                select(name="tag")
+                                    option(value) -------------Select Club Type------------  
+                                    if club.tag == "Technical"
+                                        option(value="Technical" selected)  Technical   
+                                        option(value="Non Technical") Non Technical
+                                        option(value="Cultural") Cultural    
+                                        option(value="Sports") Sports    
+                                    else if club.tag == "Non Technical"
+                                        option(value="Technical")  Technical   
+                                        option(value="Non Technical" selected) Non Technical
+                                        option(value="Cultural") Cultural    
+                                        option(value="Sports") Sports    
+                                    else if club.tag == "Cultural"
+                                        option(value="Technical")  Technical   
+                                        option(value="Non Technical") Non Technical
+                                        option(value="Cultural" selected) Cultural    
+                                        option(value="Sports") Sports    
+                                    else if club.tag == "Sports"
+                                        option(value="Technical")  Technical   
+                                        option(value="Non Technical") Non Technical
+                                        option(value="Cultural") Cultural    
+                                        option(value="Sports" selected) Sports    
+
+                            div.input-box
+                                button(type="submit" class="btn btn-signup") Update Club Page
+                
+                
+
+        include ../_footer.pug

@@ -1,0 +1,102 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title MITAOE | Club Page
+        link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+        style 
+            include ./../../public/css/club.css
+            include ./../../public/util.css
+            include ./../../public/css/header.css
+    body 
+        header.header 
+            img(src="../Logo.png", alt="Logo" class="logo")
+            nav 
+                ul 
+                    li 
+                        a(href="/clubs") Home 
+                    li
+                        a(href="/clubs/my") My Clubs 
+                    if user.role == "Teacher" 
+                        li
+                            a(href="/admin/new") Create Club 
+            div.msg=`Welcome ${user.full_name}`
+            .dropdown 
+                if user.profil_pic == ""
+                    img(src=`../assets/avatar/default.png`, alt="Profile Avatar" class="account")
+                else
+                    img(src=`../assets/avatar/${user.profil_pic || "default.png"}`, alt="Profile Avatar" class="account")
+                div.drop-btn                
+                div.dropdown-content 
+                    a.dropdown-item(href="/users/account") Account 
+                    a.dropdown-item(href="/users/account/setting") Setting 
+                    a.dropdown-item(href="/logout") Logout 
+                    if user.role == "Teacher"
+                        a.dropdown-item(href="/admin") Administration                 
+        section.head
+            h1= club.club_name
+        main 
+            .club-page-container 
+                section.operations 
+                    div.admin-op
+                        if studentCoordinator.full_name == user.full_name 
+                            a(href=`edit/${club.slug}` class="btn btn-login") Edit Club Page
+                            a(href=`teams/${club.slug}` class="btn btn-login") Create new Team
+                            a(href=`events/new/${club.slug}` class="btn btn-login") Create new Event
+
+                    form(action=`join/${club._id}` method="POST") 
+                        if user.myclubs.includes(club._id)
+                            button(type="submit" class="btn btn-unlike") 👎🏻
+                        else
+                            button(type="submit" class="btn btn-like") 👍🏻
+                secion.members 
+                    h3 Liked By
+                    div.mem-con
+                        each member,i in members 
+                            div.mem
+                                span(style="padding-right:5px")= i+1
+                                img(src=`../assets/avatar/${member.profil_pic}` class="pro-pic " alt="")
+                                a(href=`/users/${member.prn}`) 
+                                    span= member.full_name +`(${member.study_year})`
+                 
+
+                h2.page-head About
+                div.club-about= club.about
+                h2.page-head Club Coordinators
+                div.co-info 
+                    div.pro-card
+                        img(src=`../assets/avatar/${studentCoordinator.profil_pic}`, alt="")
+                        p.name= studentCoordinator.full_name 
+                        h4 Student Coordinator
+                        a.btn.btn-join(href=`../users/${studentCoordinator.prn}` target="_blank") View Profile
+                    div.pro-card
+                        img(src=`../assets/avatar/${facultyCoordinator.profil_pic}`, alt="")
+                        p.name= facultyCoordinator.full_name
+                        h4 Faculty Coordinator
+                        a.btn.btn-join(href=`../users/${facultyCoordinator.prn}` target="_blank") View Profile
+
+                
+                h1.page-head Events 
+                h1.page-head Teams
+                each team,i in teams
+                    h1.team-name= team.team_name
+                    div.co-info 
+                        each member,j in teamMembers[i]
+                            div.pro-card
+                                img(src=`../assets/avatar/${member.profil_pic}`, alt="")
+                                p.name= member.full_name 
+                                h4 Core Member
+                                a.btn.btn-join(href=`../users/${member.prn}` target="_blank") View Profile
+                h2 Connect Us
+                section.social 
+                    if club.instagram_url != ""
+                        a(href=`${club.instagram_url}` target="_blank" class="fa fa-instagram")  
+                    if club.facebook_url != ""
+                        a(href=`${club.facebook_url}` target="_blank" class="fa fa-facebook")  
+                    if club.linkedin_url != ""
+                        a(href=`${club.facebook_url}` target="_blank" class="fa fa-linkedin") 
+
+        footer.footer
+            h3 Copyright &copy; MITAOE

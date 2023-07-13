@@ -1,0 +1,64 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Sign Up | MITAOE | Club Page
+        style 
+            include ./../../public/css/landing.css
+            include ./../../public/util.css
+    body 
+        header.header 
+            img(src="Logo.png", alt="Logo" class="logo")
+        if success == false 
+            div.err-msg#dismiss= `Something went Wrong! ${message}`
+                button(onclick=`document.getElementById('dismiss').style.display = 'none'`) ❌
+        main 
+            .container
+                .welcome Welcome to MITAOE Club Page
+                .home1
+                    .form-box 
+                        h3.form-heading Sign Up
+                        form(action="/signup" method="POST")
+                            div.input-box
+                                label(for="full_name")
+                                input(type="text" name="full_name" placeholder="Enter your full name" required value=`${user.full_name}`) 
+                            div.input-box
+                                label(for="email")
+                                input(type="email" name="email" placeholder="Enter your college email" required value=`${user.email}`) 
+                            div.input-box
+                                label(for="prn")
+                                input(type="number" name="prn" placeholder="Enter your PRN" required value=`${user.prn}`) 
+                            div.input-box
+                                label(for="m_no")
+                                input(type="number" name="mobile_number" placeholder="Enter your Phone Number" required value=`${user.mobile_number}`) 
+                            div.input-box
+                                label(for="m_no") 
+                                select(name="study_year")
+                                    option(value) -------------Select Study Year-------------  
+                                    option(value="First Year") First year  
+                                    option(value="Second Year") Second year  
+                                    option(value="Third Year") Third year  
+                                    option(value="Fourth Year") Fourth year  
+                                    option(value="Pass Out") Pass Out  
+                            div.input-box
+                                label(for="m_no") 
+                                select(name="department")
+                                    option(value) -------------Select Department------------  
+                                    option(value="School of Humanities and Engineering Sciences") School of Humanities and Engineering Sciences  
+                                    option(value="School of Chemical Engineering") School of Chemical Engineering   
+                                    option(value="School of Electrical Engineering") School of Electrical Engineering   
+                                    option(value="School of Computer Engineering and Technology") School of Computer Engineering and Technology   
+                                    option(value="School of Mechanical and Civil Engineering") School of Mechanical and Civil Engineering   
+                                    option(value="School of Design") School of Design   
+                            div.input-box
+                                label(for="password")
+                                input(type="password" name="password" placeholder="Enter your password" required) 
+                            div.input-box
+                                button(type="submit" class="btn btn-signup") Sign Up
+                            div.input-box
+                                a(href="/login") Already have an account? Login here 
+                
+
+        include ../_footer.pug

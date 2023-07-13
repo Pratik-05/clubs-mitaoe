@@ -1,0 +1,179 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title MITAOE | Club Page
+        style 
+            include ./../../public/css/club.css
+            include ./../../public/util.css
+            include ./../../public/css/header.css
+    body 
+        header.header 
+            img(src="../Logo.png", alt="Logo" class="logo")
+            nav 
+                ul 
+                    li 
+                        a(href="/clubs") Home 
+                    li
+                        a(href="/clubs/my") My Clubs 
+                    if user.role == "Teacher" 
+                        li
+                            a(href="/admin/new") Create Club 
+            div.msg=`Welcome ${user.full_name}`
+            .dropdown 
+                if user.profil_pic == ""
+                    img(src=`../assets/avatar/default.png`, alt="Profile Avatar" class="account")
+                else
+                    img(src=`../assets/avatar/${user.profil_pic || "default.png"}`, alt="Profile Avatar" class="account")
+                div.drop-btn                
+                div.dropdown-content 
+                    a.dropdown-item(href="/users/account") Account 
+                    a.dropdown-item(href="/users/account/setting") Setting 
+                    a.dropdown-item(href="/logout") Logout 
+                    if user.role == "Teacher"
+                        a.dropdown-item(href="/admin") Administration                 
+        section.head
+            h1 Account
+        main 
+            .container 
+                .form-box 
+                    .form-heading Your Account
+                    form(action="/users/account" method="POST")
+                            img(src=`../assets/avatar/${user.profil_pic}`, alt="profile picture" class="avatar-main")
+                            .avatar-box 
+                                img(src="../assets/avatar/1.png", alt="profile picture" class="avatar")
+                                input(type="radio" name="profil_pic" value="1.png")
+                                img(src="../assets/avatar/2.png", alt="profile picture" class="avatar")
+                                input(type="radio" name="profil_pic" value="2.png")
+                                img(src="../assets/avatar/3.png", alt="profile picture" class="avatar")
+                                input(type="radio"  name="profil_pic" value="3.png")
+                                img(src="../assets/avatar/4.png", alt="profile picture" class="avatar")
+                                input(type="radio"  name="profil_pic" value="4.png")
+                                img(src="../assets/avatar/5.png", alt="profile picture" class="avatar")
+                                input(type="radio"  name="profil_pic" value="5.png")
+                                img(src="../assets/avatar/6.png", alt="profile picture" class="avatar")
+                                input(type="radio" name="profil_pic" value="6.png")
+                            .input-box 
+                                label(for="full_name")
+                                input(type="text" name="full_name" value=`${user.full_name}`) 
+                            div.input-box
+                                label(for="email")
+                                input(type="email" name="email" placeholder="Enter your college email" required value=`${user.email}`) 
+                            div.input-box
+                                label(for="prn")
+                                input(type="number" name="prn" placeholder="Enter your PRN" required value=`${user.prn}` class="not-edit" readonly) 
+                            div.input-box
+                                label(for="m_no")
+                                input(type="number" name="mobile_number" placeholder="Enter your Phone Number" required value=`${user.mobile_number}`) 
+                            div.input-box
+                                label(for="m_no") 
+                                select(name="study_year" required)
+                                    option(value) -------------Select Study Year-------------  
+                                    if user.study_year == "First Year"
+                                        option(value="First Year" selected) First year 
+                                        option(value="Second Year") Second year  
+                                        option(value="Third Year") Third year  
+                                        option(value="Fourth Year") Fourth year  
+                                        option(value="Pass Out") Pass Out  
+                                    else if user.study_year == "Second Year" 
+                                        option(value="First Year" ) First year 
+                                        option(value="Second Year" selected) Second year  
+                                        option(value="Third Year") Third year  
+                                        option(value="Fourth Year") Fourth year  
+                                        option(value="Pass Out") Pass Out 
+                                    else if user.study_year == "Third Year"
+                                        option(value="First Year" ) First year 
+                                        option(value="Second Year" ) Second year  
+                                        option(value="Third Year" selected) Third year  
+                                        option(value="Fourth Year") Fourth year  
+                                        option(value="Pass Out") Pass Out 
+                                    else if user.study_year == "Fourth Year"
+                                        option(value="First Year" ) First year 
+                                        option(value="Second Year" ) Second year  
+                                        option(value="Third Year") Third year  
+                                        option(value="Fourth Year" selected) Fourth year  
+                                        option(value="Pass Out") Pass Out 
+                                    else if user.study_year == "Pass Out"
+                                        option(value="First Year" ) First year 
+                                        option(value="Second Year" ) Second year  
+                                        option(value="Third Year") Third year  
+                                        option(value="Fourth Year") Fourth year  
+                                        option(value="Pass Out" selected) Pass Out 
+                                    
+                                     
+                            div.input-box
+                                label(for="m_no") 
+                                select(name="department" required)
+                                    if user.department == "School of Humanities and Engineering Sciences"
+                                        option(value) -------------Select Department------------  
+                                        option(value="School of Humanities and Engineering Sciences" selected) School of Humanities and Engineering Sciences  
+                                        option(value="School of Chemical Engineering") School of Chemical Engineering   
+                                        option(value="School of Electrical Engineering") School of Electrical Engineering   
+                                        option(value="School of Computer Engineering and Technology") School of Computer Engineering and Technology   
+                                        option(value="School of Mechanical and Civil Engineering") School of Mechanical and Civil Engineering   
+                                        option(value="School of Design") School of Design   
+                                    else if user.department == "School of Chemical Engineering"
+                                        option(value) -------------Select Department------------  
+                                        option(value="School of Humanities and Engineering Sciences") School of Humanities and Engineering Sciences  
+                                        option(value="School of Chemical Engineering" selected) School of Chemical Engineering   
+                                        option(value="School of Electrical Engineering") School of Electrical Engineering   
+                                        option(value="School of Computer Engineering and Technology") School of Computer Engineering and Technology   
+                                        option(value="School of Mechanical and Civil Engineering") School of Mechanical and Civil Engineering   
+                                        option(value="School of Design") School of Design   
+                                    else if user.department == "School of Electrical Engineering"
+                                        option(value) -------------Select Department------------  
+                                        option(value="School of Humanities and Engineering Sciences") School of Humanities and Engineering Sciences  
+                                        option(value="School of Chemical Engineering") School of Chemical Engineering   
+                                        option(value="School of Electrical Engineering" selected) School of Electrical Engineering   
+                                        option(value="School of Computer Engineering and Technology") School of Computer Engineering and Technology   
+                                        option(value="School of Mechanical and Civil Engineering") School of Mechanical and Civil Engineering   
+                                        option(value="School of Design") School of Design   
+                                    else if user.department == "School of Computer Engineering and Technology"
+                                        option(value) -------------Select Department------------  
+                                        option(value="School of Humanities and Engineering Sciences") School of Humanities and Engineering Sciences  
+                                        option(value="School of Chemical Engineering") School of Chemical Engineering   
+                                        option(value="School of Electrical Engineering") School of Electrical Engineering   
+                                        option(value="School of Computer Engineering and Technology" selected) School of Computer Engineering and Technology   
+                                        option(value="School of Mechanical and Civil Engineering") School of Mechanical and Civil Engineering   
+                                        option(value="School of Design") School of Design   
+                                    else if user.department == "School of Mechanical and Civil Engineering"
+                                        option(value) -------------Select Department------------  
+                                        option(value="School of Humanities and Engineering Sciences") School of Humanities and Engineering Sciences  
+                                        option(value="School of Chemical Engineering") School of Chemical Engineering   
+                                        option(value="School of Electrical Engineering") School of Electrical Engineering   
+                                        option(value="School of Computer Engineering and Technology") School of Computer Engineering and Technology   
+                                        option(value="School of Mechanical and Civil Engineering" selected) School of Mechanical and Civil Engineering   
+                                        option(value="School of Design") School of Design   
+                                    else if user.department == "School of Design"
+                                        option(value) -------------Select Department------------  
+                                        option(value="School of Humanities and Engineering Sciences") School of Humanities and Engineering Sciences  
+                                        option(value="School of Chemical Engineering") School of Chemical Engineering   
+                                        option(value="School of Electrical Engineering") School of Electrical Engineering   
+                                        option(value="School of Computer Engineering and Technology") School of Computer Engineering and Technology   
+                                        option(value="School of Mechanical and Civil Engineering") School of Mechanical and Civil Engineering   
+                                        option(value="School of Design" selected) School of Design      
+                            div.input-box
+                                label(for="about") Bio
+                                textarea(type="text" name="about" value=`${user.about}`)= user.about 
+                            div.input-box
+                                label(for="instagram_url")
+                                input(type="url" name="instagram_url" value=`${user.instagram_url}` placeholder="Instagram Url") 
+                            div.input-box
+                                label(for="facebook_url")
+                                input(type="url" name="facebook_url" value=`${user.facebook_url}` placeholder="Facebook Url") 
+                            div.input-box
+                                label(for="linkedin_url")
+                                input(type="url" name="linkedin_url" value=`${user.linkedin_url}` placeholder="LinkedIn Url") 
+                            div.input-box
+                                label(for="twitter_url")
+                                input(type="url" name="twitter_url" value=`${user.twitter_url}` placeholder="Twitter Url") 
+                            
+                            div.input-box
+                                button(type="submit" class="btn btn-signup") Update Profile
+                            div.input-box 
+           
+                
+
+        include ../_footer.pug

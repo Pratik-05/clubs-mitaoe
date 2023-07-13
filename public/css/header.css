@@ -1,0 +1,121 @@
+/* common to all protected pages header and footer*/
+*{
+    margin: 0;padding: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+.err-msg{
+    padding: 10px 40px;
+  background-color: red;
+  color: white;
+  position: relative;
+}
+.done-msg{
+    padding: 20px 40px;
+    background-color: rgb(139, 250, 139);
+    color: rgb(0, 0, 0);
+}
+.err-msg button,.done-msg button{
+    background:white;
+    position: absolute;
+    padding: 2px;
+    border-radius: 50%;
+    border: none;
+    right: 20px;
+    color: white;
+    cursor: pointer;
+  
+  }
+.header{
+    height: 70px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+    /* border-bottom: 1px solid black; */
+    box-shadow: 0px 2px 15px black;
+}
+nav{
+    padding: 0 50px;
+    margin-left: auto;
+}
+nav ul{
+    display: flex;
+    list-style: none;
+}
+nav ul li{
+    /* padding: 0 20px; */
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: .1px;
+    color: blue;
+}
+nav ul li a{
+    color: blue;
+    padding: 5px 20px;
+    border-radius: 40px;
+    transition: all .25s ease-in-out;
+}
+nav ul li a:hover{
+    text-decoration:wavy;
+    background-color: blue;
+    color: white;
+}
+.logo{
+    height: 90%;
+}
+.account{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    /* background: url('/public/assets/avatar/1.png');
+    background-repeat: no-repeat;
+    background-size: contain; */
+}
+.dropdown{
+    position: relative;
+    cursor: pointer;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    right: 5px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown:hover .dropdown-content{
+    display: inline-flex;
+    flex-direction: column;
+}
+.dropdown-item{
+    padding: 7px 9px;
+    text-align:center;margin: 0;
+}
+.dropdown-item:hover{
+    background-color: rgb(4, 0, 255);
+    color: white;
+
+}
+.msg{
+    margin-left: auto;
+    padding: 0 20px;
+    font-size: 1.1rem;
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    background-color: black;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+.footer > *{
+    margin: 15px 0;
+  }

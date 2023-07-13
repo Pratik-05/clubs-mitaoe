@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* dismiss button css*/
+.err-msg{
+  padding: 10px 40px;
+  background-color: red;
+  color: white;
+  position: relative;
+}
+.err-msg button{
+  background:white;
+  position: absolute;
+  padding: 2px;
+  border-radius: 50%;
+  border: none;
+  right: 20px;
+  color: white;
+  cursor: pointer;
+
+}
+
+
+/* Landing header*/
+.header{
+    height: 70px;
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+
+}
+.logo{
+    height: 90%;
+}
+
+.container {
+    padding: 22px 0 0 0;
+    background-image: url("https://mitaoe.ac.in/assets/images/gallery/campus5.JPG");
+    min-height: 660px;
+    background-repeat: no-repeat;
+    background-size:cover;
+  }
+  .welcome {
+    color: white;
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 40px;
+    /* letter-spacing:4px;
+      word-spacing: 18px; */
+    animation: letterSpacing 4s 0s both infinite alternate;
+  }
+  @keyframes letterSpacing {
+    from {
+      letter-spacing: 1px;
+      word-spacing: 10px;
+    }
+    to {
+      letter-spacing: 8px;
+      word-spacing: 25px;
+    }
+  }
+
+ 
+  .btnBox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+
+  /* landing form  css */
+  .form-heading{
+    text-align: center;
+    margin: 30px 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.form-box{
+    width: 500px;
+    margin: 0px auto;
+    background-color: white;
+    border-radius: 0 60px 0 60px;
+    padding: 5px 30px;
+}
+.input-box{
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.input-box input,.input-box select{
+  padding: 5px 7px;
+  width: 100%;
+  margin: 5px 0;
+  outline: none;
+  font-size: 1.1rem;
+  border: none;
+  border-bottom: 2px solid black;
+}
+
+/* landing page css*/
+.home{
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    margin: 9px auto;
+    width: 60vw;
+    border-radius: 0 149px;
+    background-color: white;
+
+}
+
+.btn-box{
+  display: flex;
+  padding: 4px;
+  margin: 24px auto;
+}
+.home a{
+  width: fit-content;
+  margin: 6px;
+
+  text-decoration: none;
+}
+.home h2,.home h4{
+  text-align: center;
+  font-style: italic;
+}
+.home h2{
+  font-size: 3rem;
+}
+.home h4{
+  /* margin-top: 60px; */
+  font-size: 2rem;
+}
+.quote{
+  margin-top: 30px;
+}
+
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    background-color: black;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+.footer > *{
+  margin: 15px 0;
+}

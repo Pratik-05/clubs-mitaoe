@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Log In | MITAOE | Club Page
+        style 
+            include ./../../public/css/landing.css
+            include ./../../public/util.css
+    body 
+        header.header 
+            img(src="Logo.png", alt="Logo" class="logo")
+        if success == false     
+            div.err-msg#dismiss= `Something went wrong! ${message}`
+                button(onclick=`document.getElementById('dismiss').style.display = 'none'`) ❌
+        main 
+            .container
+                .welcome Welcome to MITAOE Club Page
+                .home1
+                    .form-box 
+                        h3.form-heading Log in
+                        form(action="/login" method="POST")
+                            div.input-box
+                                label(for="email")
+                                input(type="email" name="email" placeholder="Enter your email" required) 
+                            div.input-box
+                                label(for="password")
+                                input(type="password" name="password" placeholder="Enter your password" required) 
+                            div.input-box
+                                button(type="submit" class="btn btn-login") Login
+                            div.input-box
+                                a(href="/signup") Don't have an account? Signup here 
+                             
+            
+                
+
+        include ../_footer.pug

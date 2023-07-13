@@ -1,0 +1,55 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title My Clubs | MITAOE | Club Page
+        style 
+            include ./../../public/css/club.css
+            include ./../../public/util.css
+            include ./../../public/css/header.css
+    body 
+        header.header 
+            img(src="../Logo.png", alt="Logo" class="logo")
+            nav 
+                ul 
+                    li 
+                        a(href="/clubs") Home 
+                    li
+                        a(href="/clubs/my") My Clubs 
+                    if user.role == "Teacher" 
+                        li
+                            a(href="/admin/new") Create Club 
+            div.msg=`Welcome ${user.full_name}`
+            .dropdown 
+                if user.profil_pic == ""
+                    img(src=`../assets/avatar/default.png`, alt="Profile Avatar" class="account")
+                else
+                    img(src=`../assets/avatar/${user.profil_pic || "default.png"}`, alt="Profile Avatar" class="account")
+                div.drop-btn                
+                div.dropdown-content 
+                    a.dropdown-item(href="/users/account") Account 
+                    a.dropdown-item(href="/users/account/setting") Setting 
+                    a.dropdown-item(href="/logout") Logout 
+                    if user.role == "Teacher"
+                        a.dropdown-item(href="/admin") Administration                 
+        section.head
+            h1 My Clubs
+        main 
+            .club-container 
+                    if clubs.length == 0
+                        h1.no-club You're not a part of any clubs
+                    else
+                        each club,i in clubs
+                            div.club-card 
+                                img.club-photo(src="https://mitaoe.ac.in/assets/images/campus8.jpg")
+                                div.club-content
+                                    div.club-name= clubs[i].club_name 
+                                    div.club-desc= clubs[i].about 
+                                    div.info 
+                                        div.member= `${club.members.length} Members`
+                                div.tag= club.tag
+                                a(class="btn btn-join" href=`/clubs/${club.slug}`)
+                                    | View
+        include ../_footer.pug
