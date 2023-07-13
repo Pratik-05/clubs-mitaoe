@@ -7,7 +7,7 @@
     "start": "node server.js",
     "startDev": "nodemon server.js"
   },
-  "author": "Ayush Nandanwar, Anup Mallah, Pratik Darange, Bhagyashree Kadam , Mitesh Tank",
+  "author": "Ayush Nandanwar, Anup Mallah, Pratik Darange, Bhagyashree Kadam",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
