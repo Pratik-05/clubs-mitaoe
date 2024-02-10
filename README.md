@@ -1,6 +1,6 @@
 
 # Club Management System - MITAOE
-## Second Year - Minor Project
+## My Second Year - Minor Project
 
 It is a web application for college student to help them out to connect with the various club in the college and to keep update of what activities are going around in the clubs.
 
